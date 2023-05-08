@@ -7,9 +7,9 @@
 
 3. Finally, you must run the commands below one by one in the terminal.
   ```sh
-  javac Case.java
+    javac Case.java
 
-  java Case
+    java Case
   ```
 
 
