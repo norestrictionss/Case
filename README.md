@@ -5,7 +5,8 @@
 
 2. After opening the terminal, you must adjust the current directory as a location of folders .
 
-3. Finally, you must run the commands below one by one in the terminal.\n
+3. Finally, you must run the commands below one by one in the terminal.
+
   javac Case.java
   java Case
 
