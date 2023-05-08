@@ -1,6 +1,6 @@
 
 ### About The Project
-  That project fetches data from a URL given in the program. Depending on a data, some specific information about those data are displayed on the console.
+     That project fetches data from a URL given in the program. Depending on a data, some specific information about those data are displayed on the console.
 
 ### Getting started
 
