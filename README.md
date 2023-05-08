@@ -1,4 +1,7 @@
 
+### About The Project
+  That project fetches data from a URL given in the program. Depending on a data, some specific information about those data are displayed on the console.
+
 ### Getting started
 
 1. To run the app, you can use terminal or any other alternative.
