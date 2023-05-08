@@ -3,11 +3,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.lang.StringBuffer;
 import java.util.HashMap;
 import java.text.DecimalFormat;
-import javax.swing.text.AbstractDocument.Content;
+
 
 // Barış Giray Akman
 //
@@ -25,9 +24,11 @@ public class Case {
         return formattedNumber;
     }
 
+
     // That function converts our string including PH to date format as specified in the instructions.
     public static  String convertToDate(String date){
 
+        
         try{
             String year ="20"+date.charAt(3)+date.charAt(4); 
             String month = ""+date.charAt(5)+date.charAt(6);
@@ -41,7 +42,6 @@ public class Case {
         }
         
 
-        
     }
  
     
@@ -49,7 +49,7 @@ public class Case {
     // That function fetches the price, quantity ant dates from the array created in the main function.
     public static void assignElements(String result_array[]){
 
-        ArrayList<String> features = new ArrayList<String>();
+ 
         for(int i =5;i<result_array.length;){
 
             
@@ -68,16 +68,23 @@ public class Case {
             // If our date starts with PB, it won't be inserted to our hashmap. 
 
             // That variables checks if our contract is starting with PB.
-            boolean isPB = conract.charAt(1)=='P' && conract.charAt(2)=='B';
+            boolean isPH = conract.charAt(1)=='P' && conract.charAt(2)=='H';
+
 
             
+            // That boolean checks if our contract includes PH or PB representation. 
+            // If it doesn't include any date representation, we mustn't include it into our hashmap. 
+            boolean includesDate = conract.charAt(1)=='P' && (conract.charAt(2)=='B' || conract.charAt(2)=='H');
+            
+
+
             // If hashmap doesn't include that date, it will be inserted to our hashmap.
-            // If our hashmap already includes that date, values will be added to corresponding value of hashmap's key.
-            if(!contracts_and_prices.containsKey(conract) && !isPB){
+            if(!contracts_and_prices.containsKey(conract) && isPH && includesDate){
                 contracts_and_prices.put(conract, operation_price);
                 contracts_and_quantities.put(conract, total_quantity);
             }
-            else if(!isPB){
+            // If our hashmap already includes that date, values will be added to corresponding value of hashmap's key.
+            else if(isPH && includesDate){
                 contracts_and_prices.put(conract, contracts_and_prices.get(conract)+operation_price);
                 contracts_and_quantities.put(conract, contracts_and_quantities.get(conract)+total_quantity);
             }
@@ -93,7 +100,7 @@ public class Case {
     // Only two decimal after digits have been considered.
     public static void printResults(){
 
-        System.out.printf("%-20s %-20s %-20s %-20s\n", "Tarih", "Toplam İşlem Miktari(MWh)", "Toplam İşlem Tutari(TL)", "Ağirlik Ortalama Fiyat(TL/MWh)");
+        System.out.printf("%-20s %-20s %-20s %-20s\n", "Tarih", "Toplam Islem Miktari(MWh)", "Toplam Islem Tutari(TL)", "Agirlikli Ortalama Fiyat(TL/MWh)");
 
         
         for(String i:contracts_and_prices.keySet()){
@@ -154,7 +161,7 @@ public class Case {
                 String actual_result = result.toString();
                 String result_array[]= actual_result.split("[,{}]");
                 // Adding the elements to an arraylist
-
+                
 
                 
                 assignElements(result_array);
